@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION="4.3.5.2"
+VERSION="5.1.2"
 INSTALLDIR=/src/CrashPlanPROServer_${VERSION}_Linux
 CMD=/opt/proserver/bin/proserver
 
