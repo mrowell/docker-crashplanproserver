@@ -6,10 +6,11 @@ proserver:
     - "4283:4283"
     - "4285:4285"
     - "4286:4286"
+    - "4287:4287"
+    - "4288:4288"
   volumes_from:
     - data
 data:
-  # image: tianon/true:latest
   image: busybox:latest
   container_name: proserver_data
   volumes:

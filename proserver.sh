@@ -1,13 +1,18 @@
 #!/bin/bash
-VERSION="5.1.2"
-INSTALLDIR=/src/CrashPlanPROServer_${VERSION}_Linux
+VERSION="5.4.3"
+MD5HASH=2ec3fc18deeb585575af6aeb83915ebc
 CMD=/opt/proserver/bin/proserver
+INSTALLDIR=/tmp/src
 
 if [ ! -f $CMD ]
 then
-    echo "Download and unpack CrashPlanPROServer"
-    curl -SL https://download.code42.com/installs/proserver/${VERSION}/CrashPlanPROServer_${VERSION}_Linux.tgz \
-    | tar -xz
+    mkdir -p $INSTALLDIR
+    echo "Download Code42 Server (CrashPlanPROServer)"
+    curl -fSL -o /tmp/Code42server_Linux.tgz https://download.code42.com/installs/proserver/${VERSION}/Code42server_${VERSION}_Linux.tgz
+    echo "Unpacking Code42 Server (CrashPlanPROServer)"
+    echo "$MD5HASH  /tmp/Code42server_Linux.tgz" | md5sum -c - &&\
+    tar -xzf /tmp/Code42server_Linux.tgz -C $INSTALLDIR --strip-components 1 &&\
+    rm -f /tmp/Code42server_Linux.tgz
     echo "Starting installation of CrashPlanPROServer v$VERSION!"
     sed -i 's/INSTALL_UNATTENDED=0/INSTALL_UNATTENDED=1/g' ${INSTALLDIR}/install.sh
     sed -i 's/AUTO_ACCEPT_EULA=0/AUTO_ACCEPT_EULA=1/g' ${INSTALLDIR}/install.sh
