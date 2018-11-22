@@ -1,11 +1,14 @@
-FROM java:openjdk-8-jre
+FROM debian:jessie
 MAINTAINER Erik Aulin <erik@aulin.co>
+ENV DEBIAN_FRONTEND=noninteractive
+
 
 # install prereqs
 #RUN apk add --update wget curl sed coreutils tar bash
 
 RUN apt-get update \
     && apt-get -qy --no-install-recommends install \
+        openjdk-7-jre-headless \
         cpio \
         curl \
         sed \
